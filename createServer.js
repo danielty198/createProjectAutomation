@@ -10,11 +10,11 @@ const createServer = async () => {
 
 
     let newDirectoryName = await ask("How do you want to call the server directory? ");
-    if (!newDirectoryName) newDirectoryName = "Server";
+    if (!newDirectoryName) newDirectoryName = "server";
 
 
     // Step 1: Create server directory
-    const serverPath = path.join(__dirname, "server");
+    const serverPath = path.join(__dirname, newDirectoryName.toLowerCase());
     if (!fs.existsSync(serverPath)) {
         fs.mkdirSync(serverPath);
         console.log("📂 Created server directory");

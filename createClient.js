@@ -10,9 +10,9 @@ const createClient = async () => {
 
 
     let newDirectoryName = await ask("How do you want to call the directory? ");
-    if (!newDirectoryName) newDirectoryName = "Client";
+    if (!newDirectoryName) newDirectoryName = "client";
     // Step 4: Create client directory
-    const clientPath = path.join(__dirname, newDirectoryName);
+    const clientPath = path.join(__dirname, newDirectoryName.toLowerCase());
     if (!fs.existsSync(clientPath)) {
         fs.mkdirSync(clientPath);
         console.log(`📂 Created ${newDirectoryName} directory`);
