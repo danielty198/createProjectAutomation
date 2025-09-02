@@ -1,11 +1,25 @@
 
 const { execSync } = require("child_process");
 
+const readline = require("readline");
 
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
 // cwd - current working directory
 
-runCommand = (command, cwd) => {
+
+
+const ask = question => new Promise(resolve => rl.question(question, resolve)); // makes it async
+
+
+const closeInput = () => rl.close();
+
+
+
+const runCommand = (command, cwd) => {
     try {
         console.log(`\n📦 Running: ${command} in ${cwd || process.cwd()}`);
         execSync(command, { stdio: "inherit", cwd });
@@ -16,5 +30,7 @@ runCommand = (command, cwd) => {
 }
 
 module.exports = {
-    runCommand
+    runCommand,
+    ask,
+    closeInput
 }
