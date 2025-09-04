@@ -14,7 +14,7 @@ const createServer = async () => {
 
 
   // Step 1: Create server directory
-  const serverPath = path.join(__dirname, newDirectoryName.toLowerCase());
+  const serverPath = path.join( process.cwd(), newDirectoryName.toLowerCase());
   if (!fs.existsSync(serverPath)) {
     fs.mkdirSync(serverPath);
     console.log("📂 Created server directory");
