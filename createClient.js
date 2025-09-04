@@ -19,14 +19,16 @@ const createClient = async () => {
     }
 
     // Step 5: Setup React app in client
+    console.log("📦 Setting up React app...");
     runCommand("npx create-react-app .", clientPath);
 
     console.log(`Installed React Successfully ✅️`)
 
     // Step 6: Install MUI dependencies
+    console.log("📦 Installing dependencies...");
     runCommand("npm install @mui/material @mui/x-data-grid @emotion/react @emotion/styled react-router-dom dayjs stylis @mui/icons-material", clientPath);
     console.log(`Installed Dependencies Successfully ✅️`)
-    console.log("   cd client && npm start      # to start client");
+    console.log("🎉 Client setup complete!");
 }
 
 module.exports = {
