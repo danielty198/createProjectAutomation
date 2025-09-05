@@ -168,16 +168,18 @@ module.exports = {
 }
 `;
 
-const basePath = process.cwd();
+const getPages = (basePath) => {
 
-const pages = [{ path: `${basePath}/genericCrud.js`, content: crudContent },
-{ path: `${basePath}/routes/itemRoutes.js`, content: routeContent },
-{ path: `${basePath}/models/itemModel.js`, content: modelContent },
-{ path: `${basePath}/controllers/itemController.js`, content: controllerContent },
-{ path: `${basePath}/globalFunctions.js`, content: globalFunctionsContent } ,
-{ path: `${basePath}/server.js`, content: serverContent }
-]
+  const pages = [{ path: `${basePath}/genericCrud.js`, content: crudContent },
+  { path: `${basePath}/routes/itemRoutes.js`, content: routeContent },
+  { path: `${basePath}/models/itemModel.js`, content: modelContent },
+  { path: `${basePath}/controllers/itemController.js`, content: controllerContent },
+  { path: `${basePath}/globalFunctions.js`, content: globalFunctionsContent },
+  { path: `${basePath}/server.js`, content: serverJsContent }
+  ]
+  return pages
+}
 
 module.exports = {
-    pages
+  getPages
 }
