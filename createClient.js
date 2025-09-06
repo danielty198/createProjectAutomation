@@ -12,7 +12,7 @@ const createClient = async () => {
     let newDirectoryName = await ask("How do you want to call the directory? ");
     if (!newDirectoryName) newDirectoryName = "client";
     // Step 4: Create client directory
-    const clientPath = path.join(serverPath, newDirectoryName.toLowerCase());
+    const clientPath = path.join(process.cwd(), newDirectoryName.toLowerCase());
     if (!fs.existsSync(clientPath)) {
         fs.mkdirSync(clientPath);
         console.log(`📂 Created ${newDirectoryName} directory`);
@@ -20,7 +20,7 @@ const createClient = async () => {
 
     // Step 5: Setup React app in client
     console.log("📦 Setting up React app...");
-    runCommand("npx create-react-app .", clientPath);
+    runCommand("npm create vite@latest . -- --template react", clientPath);
 
     console.log(`Installed React Successfully ✅️`)
 
