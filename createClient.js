@@ -1,7 +1,8 @@
 const { runCommand } = require('./globalFunctions')
 const fs = require("fs");
 const path = require("path");
-const { ask } = require('./globalFunctions')
+const { ask, removeDirectory } = require('./globalFunctions');
+const { getPages } = require('./assets/clientPages');
 
 
 const createClient = async () => {
@@ -28,6 +29,41 @@ const createClient = async () => {
     console.log("📦 Installing dependencies...");
     runCommand("npm install @mui/material @mui/x-data-grid @emotion/react @emotion/styled react-router-dom dayjs stylis @mui/icons-material", clientPath);
     console.log(`Installed Dependencies Successfully ✅️`)
+
+
+    // Step 7: Delete unwanted files from client
+    console.log("🗑️ Deleting unwanted files...");
+
+    const dirsToDelete = [path.join(clientPath, "public"), path.join(clientPath, "src")]
+
+    dirsToDelete.forEach(dir => {
+        removeDirectory(dir);
+    });
+
+
+    console.log("Deleted unwanted files successfully ✅️");
+
+    // Step 8: Create necessary files and folders
+    console.log("📝 Creating necessary files and folders...");
+
+    const folders = ['src', 'src/components', 'src/pages', 'src/assets', 'src/assets/images'];
+    folders.forEach(folder => {
+        const folderPath = path.join(clientPath, folder);
+        if (!fs.existsSync(folderPath)) {
+            fs.mkdirSync(folderPath);
+        }
+    });
+
+
+    const pages = getPages(clientPath)
+
+    // Step 9: Create client files
+    console.log("📝 Creating client files...");
+    pages.forEach(page => {
+        fs.writeFileSync(page.path, page.content);
+    });
+
+
     console.log("🎉 Client setup complete!");
 }
 

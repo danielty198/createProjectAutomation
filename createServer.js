@@ -2,7 +2,7 @@ const { runCommand } = require('./globalFunctions')
 const fs = require("fs");
 const path = require("path");
 const { ask } = require('./globalFunctions')
-const { getPages } = require('./serverPages')
+const { getPages } = require('./assets/serverPages')
 const createServer = async () => {
 
 

@@ -1,6 +1,6 @@
 
 const { execSync } = require("child_process");
-
+const fs = require("fs");
 const readline = require("readline");
 
 const rl = readline.createInterface({
@@ -28,10 +28,20 @@ const runCommand = (command, cwd) => {
     }
 }
 
+const removeDirectory = (dirPath) => {
+    try {
+        fs.rmSync(dirPath, { recursive: true, force: true });
+        console.log('Directory deleted successfully!');
+    } catch (err) {
+        console.error('Error deleting directory:', err);
+    }
+
+}
 
 
 module.exports = {
     runCommand,
     ask,
-    closeInput
+    closeInput,
+    removeDirectory
 }
