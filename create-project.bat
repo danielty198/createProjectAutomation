@@ -1,12 +1,7 @@
 @echo off
-REM Save the current directory
-set "ORIGINAL_DIR=%cd%"
 
-REM Navigate to the directory of this script
-cd /d %~dp0
+REM replace the path with the path on your local PC
 
 REM Start the Node.js server %* is for arguments passed to the batch file
-node app.js %*
+node "C:\Users\danie\OneDrive\Desktop\coding\automation\createProjectAutomation\app.js" %*
 
-REM Go back to the original directory
-cd /d "%ORIGINAL_DIR%"
